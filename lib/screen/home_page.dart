@@ -1,12 +1,13 @@
-import 'package:bmi_cal_app/calculator.dart';
+import 'package:bmi_cal_app/calculate/calculator.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'iconreuse.dart';
-import 'reuse_card.dart';
-import 'constant.dart';
+import '../components/iconreuse.dart';
+import '../components/reuse_card.dart';
+import '../components/constant.dart';
 import 'result.dart';
-import 'bottombutton.dart';
-import 'calculator.dart';
+import '../components/bottombutton.dart';
+import '../calculate/calculator.dart';
+import '../components/buttonround.dart';
 
 enum GenderType { male, female }
 
@@ -221,22 +222,5 @@ class _HomepageState extends State<Homepage> {
             )
           ]),
         ));
-  }
-}
-
-class Roundbutton extends StatelessWidget {
-  Roundbutton({required this.icon, required this.onpress});
-  final IconData icon;
-  final VoidCallback onpress;
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      child: Icon(icon),
-      onPressed: onpress,
-      elevation: 6.0,
-      constraints: BoxConstraints.tightFor(width: 56.0, height: 56.0),
-      shape: CircleBorder(),
-      fillColor: Color(0xffFFBABA),
-    );
   }
 }

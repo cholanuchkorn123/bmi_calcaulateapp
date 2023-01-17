@@ -1,8 +1,8 @@
-import 'package:bmi_cal_app/constant.dart';
-import 'package:bmi_cal_app/home_page.dart';
-import 'package:bmi_cal_app/reuse_card.dart';
+import 'package:bmi_cal_app/components/constant.dart';
+import 'package:bmi_cal_app/screen/home_page.dart';
+import 'package:bmi_cal_app/components/reuse_card.dart';
 import 'package:flutter/material.dart';
-import 'bottombutton.dart';
+import '../components/bottombutton.dart';
 
 class Result extends StatelessWidget {
   Result(
