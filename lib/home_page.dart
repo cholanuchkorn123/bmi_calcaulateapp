@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_launcher_icons/xml_templates.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'iconreuse.dart';
+import 'reuse_card.dart';
+
+const cardcolor = Color(0xffC85C8E);
+const cardcoloropa = Color(0xff9D3C72);
+
+enum GenderType { male, female }
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -9,62 +16,78 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  GenderType? selectgender;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Text('BMI CALCULATOR'),
           centerTitle: true,
-          backgroundColor: Colors.black,
+          backgroundColor: Color(0xff7B2869),
         ),
-        body: SafeArea(
-          child: Container(
-            padding: const EdgeInsets.all(30),
-            color: Colors.black,
-            child: Column(children: [
-              Expanded(
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Reusecard(),
+        body: Container(
+          padding: const EdgeInsets.all(30),
+          color: Color(0xff7B2869),
+          child: Column(children: [
+            Expanded(
+              child: Row(
+                children: [
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectgender = GenderType.male;
+                        });
+                      },
+                      child: Reusecard(
+                        col: selectgender == GenderType.male
+                            ? cardcolor
+                            : cardcoloropa,
+                        cardchild: Iconswidget(
+                          iconfor: FontAwesomeIcons.mars,
+                          name: 'MALE',
+                        ),
+                      ),
                     ),
-                    Expanded(child: Reusecard())
-                  ],
-                ),
+                  ),
+                  Expanded(
+                      child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectgender = GenderType.female;
+                      });
+                    },
+                    child: Reusecard(
+                        col: selectgender == GenderType.female
+                            ? cardcolor
+                            : cardcoloropa,
+                        cardchild: Iconswidget(
+                          iconfor: FontAwesomeIcons.venus,
+                          name: 'FEMALE',
+                        )),
+                  ))
+                ],
               ),
-              Expanded(
-                  child: Expanded(
-                      child: Container(
-                margin: const EdgeInsets.all(10.0),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    color: Colors.grey),
-              ))),
-              Expanded(
-                child: Row(
-                  children: [
-                    Expanded(child: Reusecard()),
-                    Expanded(child: Reusecard())
-                  ],
-                ),
-              )
-            ]),
-          ),
+            ),
+            Expanded(child: Reusecard(col: cardcolor, cardchild: Container())),
+            Expanded(
+              child: Row(
+                children: [
+                  Expanded(
+                      child: Reusecard(col: cardcolor, cardchild: Container())),
+                  Expanded(
+                      child: Reusecard(col: cardcolor, cardchild: Container()))
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              height: 50,
+              width: double.infinity,
+              color: Color(0xffFFBABA),
+            )
+          ]),
         ));
-  }
-}
-
-class Reusecard extends StatelessWidget {
-  const Reusecard({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(10.0),
-      decoration: BoxDecoration(
-          color: Colors.grey, borderRadius: BorderRadius.circular(10.0)),
-    );
   }
 }
