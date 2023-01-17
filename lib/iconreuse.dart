@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'constant.dart';
 class Iconswidget extends StatelessWidget {
   Iconswidget({required this.iconfor, required this.name});
   final IconData iconfor;
@@ -18,10 +18,7 @@ class Iconswidget extends StatelessWidget {
         ),
         Text(
           name,
-          style: TextStyle(
-              fontSize: 20,
-              color: Colors.white.withOpacity(0.7),
-              fontWeight: FontWeight.w600),
+          style: textstyle,
         )
       ],
     );
